@@ -16,6 +16,9 @@ export class UserService {
 
   getActualUser = (): User => this.actualUser;
 
+  getRanking = (): User[] =>
+    this.users.sort((user, previous) => previous.record - user.record);
+
   saveUser(user: User): void {
     this.users.splice(
       this.users.findIndex((userArray) => user.username === userArray.username),

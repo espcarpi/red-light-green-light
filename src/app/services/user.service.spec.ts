@@ -83,4 +83,16 @@ describe('UserService', () => {
       ]);
     });
   });
+
+  it('Should return the ranking of people ordered', () => {
+    const bestOne: User = {
+      record: 100,
+      score: 0,
+      username: 'the best'
+    };
+    service.setActualUser(bestOne.username);
+    service.saveUser(bestOne);
+
+    expect(service.getRanking()).toEqual([bestOne, userMock]);
+  });
 });

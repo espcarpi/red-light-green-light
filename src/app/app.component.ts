@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 
+import { Page, PAGES } from './utils/pages.constant';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  appPages = [{ title: 'Leave', url: '/login', icon: 'exit' }];
+  appPages: Page[] = Object.values(PAGES).sort(
+    (page, previous) => page.position - previous.position
+  );
 
   constructor() {}
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
+import { PAGES } from '../../utils/pages.constant';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
   handleLoginButton(): void {
     if (this.loginForm.valid) {
       this.userService.setActualUser(this.loginForm.value.username);
-      this.router.navigate(['game']);
+      this.router.navigate([PAGES.game.url]);
     }
   }
 }

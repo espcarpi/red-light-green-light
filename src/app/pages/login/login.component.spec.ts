@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { UserService } from '../../services/user.service';
+import { PAGES } from '../../utils/pages.constant';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -77,7 +78,7 @@ describe('LoginComponent', () => {
       });
 
       it('Should set actual user in userService', () => {
-        expect(routerMock.navigate).toHaveBeenCalledWith(['game']);
+        expect(routerMock.navigate).toHaveBeenCalledWith([PAGES.game.url]);
       });
     });
 
