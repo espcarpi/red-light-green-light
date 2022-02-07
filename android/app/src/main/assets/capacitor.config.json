@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "red-light-green-ligth",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
