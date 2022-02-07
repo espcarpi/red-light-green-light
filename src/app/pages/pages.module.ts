@@ -3,14 +3,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
 
+import { ComponentsModule } from '../components/components.module';
+import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, GameComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     FormsModule,
+    ComponentsModule,
     ReactiveFormsModule,
     IonicModule.forRoot()
   ]

@@ -23,8 +23,7 @@ export class LoginComponent {
   handleLoginButton(): void {
     if (this.loginForm.valid) {
       this.userService.setActualUser(this.loginForm.value.username);
-      // TODO
-      //this.router.navigate(['game']);
+      this.router.navigate(['game']);
     }
   }
 }

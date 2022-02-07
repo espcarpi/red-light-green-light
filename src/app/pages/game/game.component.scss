@@ -1,0 +1,14 @@
+:host {
+  ion-icon {
+    margin: 4rem auto;
+    font-size: 120px;
+
+    &.go {
+      color: green;
+    }
+
+    &.stop {
+      color: red;
+    }
+  }
+}

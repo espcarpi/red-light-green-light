@@ -12,7 +12,7 @@ describe('UserService', () => {
     score: 4,
     username: 'any username'
   };
-  const usersMock: User[] = [userMock];
+  const usersMock: User[] = [{ ...userMock }];
 
   const storageServiceMock = {
     get: jasmine.createSpy().and.returnValue(Promise.resolve(usersMock)),
@@ -69,6 +69,18 @@ describe('UserService', () => {
           newUser
         ]);
       });
+    });
+  });
+
+  describe('Saving the user', () => {
+    it('Should set the users in the storage', () => {
+      const newUser = { username: 'new', record: 18, score: 7 };
+      service.setActualUser(newUser.username);
+      service.saveUser(newUser);
+      expect(storageServiceMock.set).toHaveBeenCalledWith([
+        ...usersMock,
+        newUser
+      ]);
     });
   });
 });

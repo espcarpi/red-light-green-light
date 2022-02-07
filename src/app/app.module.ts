@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginGuard } from './guards/login.guard';
 import { PagesModule } from './pages/pages.module';
 import { StorageService } from './services/storage.service';
 import { UserService } from './services/user.service';
@@ -32,6 +33,7 @@ export const initializeStorageService =
     })
   ],
   providers: [
+    LoginGuard,
     UserService,
     {
       provide: APP_INITIALIZER,

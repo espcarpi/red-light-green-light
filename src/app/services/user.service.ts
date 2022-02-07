@@ -16,6 +16,16 @@ export class UserService {
 
   getActualUser = (): User => this.actualUser;
 
+  saveUser(user: User): void {
+    this.users.splice(
+      this.users.findIndex((userArray) => user.username === userArray.username),
+      1,
+      user
+    );
+
+    this.storageService.set(this.users);
+  }
+
   setActualUser(name: string): void {
     const previousUser = this.getUser(name);
     if (previousUser) {

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
@@ -13,6 +14,10 @@ describe('LoginComponent', () => {
 
   const userServiceMock = {
     setActualUser: jasmine.createSpy()
+  };
+
+  const routerMock = {
+    navigate: jasmine.createSpy()
   };
 
   const username = 'any username';
@@ -32,6 +37,10 @@ describe('LoginComponent', () => {
           {
             provide: UserService,
             useValue: userServiceMock
+          },
+          {
+            provide: Router,
+            useValue: routerMock
           }
         ]
       }).compileComponents();
@@ -65,6 +74,10 @@ describe('LoginComponent', () => {
 
       it('Should set actual user in userService', () => {
         expect(userServiceMock.setActualUser).toHaveBeenCalledWith(username);
+      });
+
+      it('Should set actual user in userService', () => {
+        expect(routerMock.navigate).toHaveBeenCalledWith(['game']);
       });
     });
 

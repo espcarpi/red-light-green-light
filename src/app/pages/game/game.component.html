@@ -1,0 +1,26 @@
+<app-header>
+  <ion-row>
+    <ion-col
+      ><p>User: {{ user?.username }}</p></ion-col
+    >
+
+    <ion-col
+      ><p>Score: {{ user?.score }}</p></ion-col
+    >
+
+    <ion-col
+      ><p>Record: {{ user?.record }}</p></ion-col
+    >
+  </ion-row>
+  <ion-row justify-content-center>
+    <ion-icon
+      name="ellipse-outline"
+      [ngClass]="available ? 'go' : 'stop'"
+    ></ion-icon>
+  </ion-row>
+  <ion-row justify-content-center>
+    <ion-col size-xl="5" size-lg="6" size-md="9" size-xs="12">
+      <app-steps (scoreEvent)="setScore($event)"></app-steps>
+    </ion-col>
+  </ion-row>
+</app-header>
