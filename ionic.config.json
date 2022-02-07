@@ -1,0 +1,7 @@
+{
+  "name": "red-light-green-ligth",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
