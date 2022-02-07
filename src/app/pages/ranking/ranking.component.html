@@ -1,0 +1,13 @@
+<app-header>
+  <ion-row
+    *ngFor="let user of ranking; index as i"
+    [ngClass]="{ 'actual-user': user.username === actualUser }"
+  >
+    <ion-col
+      ><p>{{ i + 1 }}. {{ user?.username }}</p></ion-col
+    >
+    <ion-col
+      ><p class="score">{{ user?.record }}</p></ion-col
+    >
+  </ion-row>
+</app-header>

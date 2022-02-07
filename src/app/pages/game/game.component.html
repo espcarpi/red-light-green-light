@@ -14,7 +14,7 @@
   </ion-row>
   <ion-row justify-content-center>
     <ion-icon
-      name="ellipse-outline"
+      [name]="available ? 'body-outline' : 'man-outline'"
       [ngClass]="available ? 'go' : 'stop'"
     ></ion-icon>
   </ion-row>

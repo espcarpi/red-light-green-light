@@ -6,9 +6,10 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../components/components.module';
 import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
-  declarations: [LoginComponent, GameComponent],
+  declarations: [LoginComponent, GameComponent, RankingComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
