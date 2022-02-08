@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
-import { PAGES } from '../../constants/pages.constant';
+import { PageService } from '../../services/page.service';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +10,7 @@ import { PAGES } from '../../constants/pages.constant';
 export class HeaderComponent {
   title: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.url.subscribe((url) => {
-      this.title = Object.values(PAGES).find(
-        (page) => page.url === url[0].path
-      ).title;
-    });
+  constructor(private readonly pageService: PageService) {
+    this.pageService.pageInfo.subscribe((page) => (this.title = page.title));
   }
 }

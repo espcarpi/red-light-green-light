@@ -1,5 +1,8 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane
+    contentId="main-content"
+    *ngIf="actualPage?.menu; else noMenuTemplate"
+  >
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
@@ -30,4 +33,7 @@
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+  <ng-template #noMenuTemplate>
+    <ion-router-outlet></ion-router-outlet>
+  </ng-template>
 </ion-app>
