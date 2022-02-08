@@ -8,7 +8,7 @@ It is a game made for a challenge created with Angular 13 and Ionic 6
 3. Run the server: "ionic serve" (If you want to try in other device, add "--external")
 4. After that, your browser will open a tab with the app. Otherwise go [here](http://localhost:8100/)
 
-Note: If you are trying in a different device than the one running the server, you may access to http://<your-server-ip>:8100
+Note: If you are trying in a different device than the one running the server, you may access to http://"your-server-ip":8100
 
 # How to play 
 The game is based on making steps as you are doing normally in real life. That means, you should step one leg and then the other (left and right). 
