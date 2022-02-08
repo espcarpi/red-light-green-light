@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { PAGES } from './constants/pages.constant';
 import { LoginGuard } from './guards/login.guard';
 import { GameComponent } from './pages/game/game.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
-import { PAGES } from './utils/pages.constant';
 
 const routes: Routes = [
   {

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { of } from 'rxjs';
 
-import { PAGES } from '../../utils/pages.constant';
+import { PAGES } from '../../constants/pages.constant';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {

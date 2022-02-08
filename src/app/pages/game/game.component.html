@@ -12,13 +12,13 @@
       ><p>Record: {{ user?.record }}</p></ion-col
     >
   </ion-row>
-  <ion-row justify-content-center>
+  <ion-row>
     <ion-icon
       [name]="available ? 'body-outline' : 'man-outline'"
       [ngClass]="available ? 'go' : 'stop'"
     ></ion-icon>
   </ion-row>
-  <ion-row justify-content-center>
+  <ion-row>
     <ion-col size-xl="5" size-lg="6" size-md="9" size-xs="12">
       <app-steps (scoreEvent)="setScore($event)"></app-steps>
     </ion-col>

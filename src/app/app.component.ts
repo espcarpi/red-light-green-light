@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Page, PAGES } from './utils/pages.constant';
+import { PAGES } from './constants/pages.constant';
+import { Page } from './models/page.model';
 
 @Component({
   selector: 'app-root',

@@ -1,9 +1,4 @@
-export interface Page {
-  icon: string;
-  title: string;
-  url: string;
-  position: number;
-}
+import { Page } from '../models/page.model';
 
 interface Pages {
   [key: string]: Page;
