@@ -7,6 +7,7 @@ interface Pages {
 export const PAGES: Pages = {
   game: {
     icon: 'body',
+    menu: true,
     title: 'Game',
     url: 'game',
     position: 0
@@ -19,7 +20,8 @@ export const PAGES: Pages = {
   },
   ranking: {
     icon: 'ribbon',
-    title: 'Ranking',
+    menu: true,
+    title: 'Top 10',
     url: 'ranking',
     position: 1
   }

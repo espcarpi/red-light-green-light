@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { of } from 'rxjs';
 
 import { PAGES } from '../../constants/pages.constant';
+import { PageService } from '../../services/page.service';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  const activatedRouteMock = {
-    url: of([{ path: PAGES.login.url }])
+  const page = PAGES.login;
+  const pageServiceMock = {
+    pageInfo: of(page)
   };
-
-  let html;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,8 +21,8 @@ describe('HeaderComponent', () => {
       imports: [IonicModule.forRoot()],
       providers: [
         {
-          provide: ActivatedRoute,
-          useValue: activatedRouteMock
+          provide: PageService,
+          useValue: pageServiceMock
         }
       ]
     }).compileComponents();
@@ -31,10 +30,9 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    html = fixture.nativeElement;
   });
 
   it('should set the title depending of the page', () => {
-    expect(component.title).toEqual(PAGES.login.title);
+    expect(component.title).toEqual(page.title);
   });
 });

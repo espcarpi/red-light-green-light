@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { Router } from '@angular/router';
@@ -23,34 +23,32 @@ describe('LoginComponent', () => {
 
   const username = 'any username';
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [LoginComponent],
-        imports: [
-          IonicModule.forRoot(),
-          BrowserDynamicTestingModule,
-          ReactiveFormsModule,
-          RouterTestingModule
-        ],
-        providers: [
-          FormBuilder,
-          {
-            provide: UserService,
-            useValue: userServiceMock
-          },
-          {
-            provide: Router,
-            useValue: routerMock
-          }
-        ]
-      }).compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      imports: [
+        IonicModule.forRoot(),
+        BrowserDynamicTestingModule,
+        ReactiveFormsModule,
+        RouterTestingModule
+      ],
+      providers: [
+        FormBuilder,
+        {
+          provide: UserService,
+          useValue: userServiceMock
+        },
+        {
+          provide: Router,
+          useValue: routerMock
+        }
+      ]
+    }).compileComponents();
 
-      fixture = TestBed.createComponent(LoginComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    })
-  );
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   describe('On initialization', () => {
     it('should create an instance of form group', () => {

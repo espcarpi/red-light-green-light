@@ -13,7 +13,7 @@ export class RankingComponent {
   actualUser: string;
 
   constructor(private readonly userService: UserService) {
-    this.ranking = this.userService.getRanking();
+    this.ranking = this.userService.getRanking().slice(0, 10);
     this.actualUser = this.userService.getActualUser().username;
   }
 }
