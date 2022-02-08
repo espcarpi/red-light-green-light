@@ -41,12 +41,8 @@ export class GameComponent implements OnDestroy {
   }
 
   private checkScore(): void {
-    if (this.user.score === 0) {
-      console.log('ENd of game');
-    } else {
-      this.user.record =
-        this.user.record < this.user.score ? this.user.score : this.user.record;
-    }
+    this.user.record =
+      this.user.record < this.user.score ? this.user.score : this.user.record;
     this.userService.saveUser(this.user);
   }
 

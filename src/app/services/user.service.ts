@@ -6,11 +6,11 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class UserService {
   private actualUser: User;
-  private users: User[] = [];
+  private users: User[];
 
   constructor(private readonly storageService: StorageService) {
     this.storageService.get().then((users) => {
-      this.users = users;
+      this.users = users || [];
     });
   }
 

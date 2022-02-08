@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { PAGES } from '../../utils/pages.constant';
+import { PAGES } from '../../constants/pages.constant';
 
 @Component({
   selector: 'app-header',

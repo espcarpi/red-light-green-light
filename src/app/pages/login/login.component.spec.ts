@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
+import { PAGES } from '../../constants/pages.constant';
 import { UserService } from '../../services/user.service';
-import { PAGES } from '../../utils/pages.constant';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {

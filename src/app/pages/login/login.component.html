@@ -7,10 +7,17 @@
 
   <div id="container">
     <form [formGroup]="loginForm">
-      <ion-item lines="full">
-        <ion-label position="floating">Username</ion-label>
-        <ion-input formControlName="username" type="text" required></ion-input>
-      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Username</ion-label>
+            <ion-input
+              formControlName="username"
+              type="text"
+              required
+            ></ion-input> </ion-item
+        ></ion-col>
+      </ion-row>
       <ion-row>
         <ion-col>
           <ion-button
