@@ -1,8 +1,13 @@
 # Red Light/Green light
 It is a game made for a challenge created with Angular 13 and Ionic 6
 
+# How to make it run in Android
+1. You need to download the apk in apks folder.
+2. Give access in your phone to install unknown apps.
+3. Install the apk.
+4. Enjoy the game! 
 
-# How to make it run (locally)
+# How to make it run in browser (locally)
 1. You need to have installed [Nodejs](https://nodejs.dev/learn/how-to-install-nodejs) and [Ionic Cli](https://ionicframework.com/getting-started/).
 2. Install packages: "npm i"
 3. Run the server: "ionic serve" (If you want to try in other device, add "--external")
