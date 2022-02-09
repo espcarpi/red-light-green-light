@@ -27,7 +27,9 @@ export class GameComponent implements OnDestroy {
 
   @HostListener('click', ['$event'])
   onClick() {
-    this.setScore(0);
+    if (!this.available) {
+      this.setGameLost();
+    }
   }
 
   ngOnDestroy(): void {
