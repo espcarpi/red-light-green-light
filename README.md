@@ -1,5 +1,6 @@
 # Red Light/Green light
-It is a game made for a challenge created with Angular 13 and Ionic 6
+It is a game made for a challenge created with Angular 13 and Ionic 6.
+The game has been developed to be able to run in Android and Ios devices and, also, in browsers.
 
 # How to make it run in Android
 1. You need to download the apk in apks folder.
@@ -17,7 +18,7 @@ Note: If you are trying in a different device than the one running the server, y
 
 # How to play 
 The game is based on making steps as you are doing normally in real life. That means, you should step one leg and then the other (left and right). 
-If you make this movement when the image is green, then you will be able to score a point. If you try to go just with one leg (for example the left one), a point will be discounted from your score until you reach 0. 
+If you make this movement when the image is green and the music is playing, you will be able to score a point. If you try to go just with one leg (for example the left one), a point will be discounted from your score until you reach 0. 
 
 If you are playing without a keyboard (usually from mobile), your only way to make steps will be clicking the buttons on the screen.
 If you are playing with a keyboard, you will be able to make steps clicking the buttons on the screen or clicking the arrows (left and right) in your keyboard.
