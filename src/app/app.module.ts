@@ -1,6 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Drivers } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage-angular';
@@ -35,6 +36,7 @@ export const initializeStorageService =
   providers: [
     LoginGuard,
     UserService,
+    Vibration,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeStorageService,

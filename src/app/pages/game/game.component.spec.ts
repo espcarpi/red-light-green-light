@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { IonicModule } from '@ionic/angular';
 
 import { User } from '../../models/user.model';
@@ -19,12 +20,18 @@ describe('GameComponent', () => {
     getActualUser: jasmine.createSpy().and.returnValue(userMock),
     saveUser: jasmine.createSpy()
   };
+  const vibrationMock = {
+    vibrate: jasmine.createSpy()
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [IonicModule.forRoot()],
-      providers: [{ provide: UserService, useValue: userServiceMock }],
+      providers: [
+        { provide: UserService, useValue: userServiceMock },
+        { provide: Vibration, useValue: vibrationMock }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
