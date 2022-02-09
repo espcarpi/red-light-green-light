@@ -85,6 +85,12 @@ describe('GameComponent', () => {
       expect(component.user.score).toBe(0);
     });
 
+    it('should vibrate when it is not availble and user lose', () => {
+      component.available = false;
+      component.setScore(1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(500);
+    });
+
     it('should not set user score to 0 when it is availble', () => {
       component.available = true;
       component.setScore(1);
@@ -106,6 +112,19 @@ describe('GameComponent', () => {
       component.user.record = recordMock;
       component.setScore(1);
       expect(component.user.record).toBe(recordMock);
+    });
+
+    it('should vibrate if the user lose points', () => {
+      component.user.score = 10;
+      component.setScore(-1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(250);
+    });
+
+    it('should vibrate if the user lose points and reach 0', () => {
+      component.user.score = 1;
+      component.setScore(-1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(250);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(500);
     });
   });
 

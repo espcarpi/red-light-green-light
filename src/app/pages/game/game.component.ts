@@ -34,15 +34,13 @@ export class GameComponent implements OnDestroy {
   }
 
   setScore(score: number): void {
-    if (score < 0) {
-      this.vibration.vibrate(1000);
-    }
-
-    if (this.available && this.user.score >= 0) {
+    if (this.available) {
+      if (score < 0) {
+        this.vibration.vibrate(250);
+      }
       this.user.score += score;
     } else {
-      this.vibration.vibrate(1000);
-      this.user.score = 0;
+      this.setGameLost();
     }
 
     this.checkScore();
@@ -53,8 +51,13 @@ export class GameComponent implements OnDestroy {
   }
 
   private checkScore(): void {
-    this.user.record =
-      this.user.record < this.user.score ? this.user.score : this.user.record;
+    if (this.user.score <= 0) {
+      this.setGameLost();
+    } else {
+      this.user.record =
+        this.user.record < this.user.score ? this.user.score : this.user.record;
+    }
+
     this.userService.saveUser(this.user);
   }
 
@@ -78,5 +81,10 @@ export class GameComponent implements OnDestroy {
     this.timeOutSuscriber = setTimeout(() => {
       this.initLight();
     }, lightTime);
+  }
+
+  private setGameLost(): void {
+    this.user.score = 0;
+    this.vibration.vibrate(500);
   }
 }
