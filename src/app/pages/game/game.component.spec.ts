@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { IonicModule } from '@ionic/angular';
 
 import { User } from '../../models/user.model';
@@ -19,12 +20,18 @@ describe('GameComponent', () => {
     getActualUser: jasmine.createSpy().and.returnValue(userMock),
     saveUser: jasmine.createSpy()
   };
+  const vibrationMock = {
+    vibrate: jasmine.createSpy()
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [IonicModule.forRoot()],
-      providers: [{ provide: UserService, useValue: userServiceMock }],
+      providers: [
+        { provide: UserService, useValue: userServiceMock },
+        { provide: Vibration, useValue: vibrationMock }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
@@ -78,6 +85,12 @@ describe('GameComponent', () => {
       expect(component.user.score).toBe(0);
     });
 
+    it('should vibrate when it is not availble and user lose', () => {
+      component.available = false;
+      component.setScore(1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(500);
+    });
+
     it('should not set user score to 0 when it is availble', () => {
       component.available = true;
       component.setScore(1);
@@ -99,6 +112,19 @@ describe('GameComponent', () => {
       component.user.record = recordMock;
       component.setScore(1);
       expect(component.user.record).toBe(recordMock);
+    });
+
+    it('should vibrate if the user lose points', () => {
+      component.user.score = 10;
+      component.setScore(-1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(250);
+    });
+
+    it('should vibrate if the user lose points and reach 0', () => {
+      component.user.score = 1;
+      component.setScore(-1);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(250);
+      expect(vibrationMock.vibrate).toHaveBeenCalledWith(500);
     });
   });
 

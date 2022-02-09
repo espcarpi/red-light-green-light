@@ -1,4 +1,5 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
@@ -14,7 +15,10 @@ export class GameComponent implements OnDestroy {
 
   private timeOutSuscriber;
 
-  constructor(private readonly userService: UserService) {
+  constructor(
+    private readonly userService: UserService,
+    private readonly vibration: Vibration
+  ) {
     this.user = this.userService.getActualUser();
     this.initLight();
   }
@@ -30,10 +34,13 @@ export class GameComponent implements OnDestroy {
   }
 
   setScore(score: number): void {
-    if (this.available && this.user.score >= 0) {
+    if (this.available) {
+      if (score < 0) {
+        this.vibration.vibrate(250);
+      }
       this.user.score += score;
     } else {
-      this.user.score = 0;
+      this.setGameLost();
     }
 
     this.checkScore();
@@ -44,8 +51,13 @@ export class GameComponent implements OnDestroy {
   }
 
   private checkScore(): void {
-    this.user.record =
-      this.user.record < this.user.score ? this.user.score : this.user.record;
+    if (this.user.score <= 0) {
+      this.setGameLost();
+    } else {
+      this.user.record =
+        this.user.record < this.user.score ? this.user.score : this.user.record;
+    }
+
     this.userService.saveUser(this.user);
   }
 
@@ -69,5 +81,10 @@ export class GameComponent implements OnDestroy {
     this.timeOutSuscriber = setTimeout(() => {
       this.initLight();
     }, lightTime);
+  }
+
+  private setGameLost(): void {
+    this.user.score = 0;
+    this.vibration.vibrate(500);
   }
 }
