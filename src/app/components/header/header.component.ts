@@ -11,6 +11,6 @@ export class HeaderComponent {
   title: string;
 
   constructor(private readonly pageService: PageService) {
-    this.pageService.pageInfo.subscribe((page) => (this.title = page.title));
+    this.pageService.pageInfo.subscribe((page) => (this.title = page?.title));
   }
 }
