@@ -24,7 +24,15 @@ describe('GameComponent', () => {
     vibrate: jasmine.createSpy()
   };
 
+  let playAudioSpy;
+  let pauseAudioSpy;
+  let loadAudioSpy;
+
   beforeEach(() => {
+    playAudioSpy = spyOn(window.HTMLAudioElement.prototype, 'play');
+    pauseAudioSpy = spyOn(window.HTMLAudioElement.prototype, 'pause');
+    loadAudioSpy = spyOn(window.HTMLAudioElement.prototype, 'load');
+
     TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [IonicModule.forRoot()],
@@ -47,6 +55,14 @@ describe('GameComponent', () => {
 
     it('should set steps available', () => {
       expect(component.available).toBeTrue();
+    });
+
+    it('should load the audio', () => {
+      expect(loadAudioSpy).toHaveBeenCalled();
+    });
+
+    it('should play the audio', () => {
+      expect(playAudioSpy).toHaveBeenCalled();
     });
   });
 
@@ -140,6 +156,14 @@ describe('GameComponent', () => {
         expect(component.available).toBeFalse();
       });
     }));
+
+    it('Should stop music in 10 seconds if there is no points (+/- 1.5 sec)', fakeAsync(() => {
+      tick(11500);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(pauseAudioSpy).toHaveBeenCalled();
+      });
+    }));
   });
 
   describe('When the component is destroyed', () => {
@@ -155,6 +179,11 @@ describe('GameComponent', () => {
 
       component.ngOnDestroy();
       expect(clearTimeoutSpy).toHaveBeenCalled();
+    });
+
+    it('should pause the song', () => {
+      component.ngOnDestroy();
+      expect(pauseAudioSpy).toHaveBeenCalled();
     });
   });
 });

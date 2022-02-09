@@ -14,23 +14,28 @@ export class GameComponent implements OnDestroy {
   available = false;
 
   private timeOutSuscriber;
+  private audio: HTMLAudioElement;
 
   constructor(
     private readonly userService: UserService,
     private readonly vibration: Vibration
   ) {
     this.user = this.userService.getActualUser();
+    this.initAudio();
     this.initLight();
   }
 
   @HostListener('click', ['$event'])
   onClick() {
-    this.setScore(0);
+    if (!this.available) {
+      this.setGameLost();
+    }
   }
 
   ngOnDestroy(): void {
     this.userService.saveUser(this.user);
     clearTimeout(this.timeOutSuscriber);
+    this.audio.pause();
   }
 
   setScore(score: number): void {
@@ -74,13 +79,28 @@ export class GameComponent implements OnDestroy {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  private initAudio(): void {
+    this.audio = new Audio();
+    this.audio.src = '../../../assets/song.mp3';
+    this.audio.load();
+  }
+
   private initLight(): void {
     this.changeLight();
     const lightTime = this.getLightTime();
+    if (this.available) {
+      this.playAudio(lightTime);
+    }
 
     this.timeOutSuscriber = setTimeout(() => {
       this.initLight();
     }, lightTime);
+  }
+
+  private playAudio(time: number) {
+    const rate = 5000 / time;
+    this.audio.playbackRate = rate;
+    this.audio.play();
   }
 
   private setGameLost(): void {
