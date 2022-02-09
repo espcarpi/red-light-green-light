@@ -11,7 +11,8 @@
 
           <ion-menu-toggle
             auto-hide="false"
-            *ngFor="let p of appPages; let i = index"
+            *ngFor="let p of appPages; last as isLast"
+            [ngClass]="{ 'last-item': isLast }"
           >
             <ion-item
               routerDirection="root"

@@ -117,3 +117,12 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-menu-toggle.last-item {
+  bottom: 0;
+  position: absolute;
+}
+
+ion-menu ion-list {
+  height: 100%;
+}
