@@ -12,6 +12,8 @@ export class GameComponent implements OnDestroy {
   user: User;
   available = false;
 
+  private timeOutSuscriber;
+
   constructor(private readonly userService: UserService) {
     this.user = this.userService.getActualUser();
     this.initLight();
@@ -24,6 +26,7 @@ export class GameComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.userService.saveUser(this.user);
+    clearTimeout(this.timeOutSuscriber);
   }
 
   setScore(score: number): void {
@@ -46,22 +49,25 @@ export class GameComponent implements OnDestroy {
     this.userService.saveUser(this.user);
   }
 
-  private initLight(): void {
-    this.changeLight();
-    const lightTime = this.getLightTime();
-
-    setTimeout(() => {
-      this.initLight();
-    }, lightTime);
-  }
-
-  private getLightTime = (): number =>
+  private getGreenLightTime = (): number =>
     Math.max(10000 - this.user.score * 100, 2000) +
     this.getRandomIntInclusive(-1500, 1500);
+
+  private getLightTime = (): number =>
+    this.available ? this.getGreenLightTime() : 3000;
 
   private getRandomIntInclusive(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  private initLight(): void {
+    this.changeLight();
+    const lightTime = this.getLightTime();
+
+    this.timeOutSuscriber = setTimeout(() => {
+      this.initLight();
+    }, lightTime);
   }
 }

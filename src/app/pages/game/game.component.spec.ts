@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { User } from '../../models/user.model';
@@ -99,6 +99,36 @@ describe('GameComponent', () => {
       component.user.record = recordMock;
       component.setScore(1);
       expect(component.user.record).toBe(recordMock);
+    });
+  });
+
+  describe('Checking the availability of the game', () => {
+    it('Should be green at the beggining', () => {
+      expect(component.available).toBeTrue();
+    });
+
+    it('Should be red in 10 seconds if there is no points (+/- 1.5 sec)', fakeAsync(() => {
+      tick(11500);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.available).toBeFalse();
+      });
+    }));
+  });
+
+  describe('When the component is destroyed', () => {
+    it('should save the user information', () => {
+      userServiceMock.saveUser.calls.reset();
+
+      component.ngOnDestroy();
+      expect(userServiceMock.saveUser).toHaveBeenCalledOnceWith(component.user);
+    });
+
+    it('should clear any timeout running', () => {
+      const clearTimeoutSpy = spyOn(window, 'clearTimeout').and.callThrough();
+
+      component.ngOnDestroy();
+      expect(clearTimeoutSpy).toHaveBeenCalled();
     });
   });
 });
